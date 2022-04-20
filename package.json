@@ -10,7 +10,9 @@
   "private": true,
   "devDependencies": {
     "@nrwl/cli": "13.10.3",
+    "@nrwl/nest": "13.10.3",
     "@nrwl/nx-cloud": "latest",
+    "@nrwl/react": "13.10.3",
     "@nrwl/workspace": "13.10.3",
     "@types/node": "16.11.7",
     "nx": "13.10.3",
