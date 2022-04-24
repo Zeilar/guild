@@ -6,6 +6,7 @@ export const theme = {
 	palette: {
 		primary: "red",
 		secondary: "gray",
+		textMuted: "rgb(200, 200, 200)",
 	},
 	typography: {
 		brand: {
@@ -17,5 +18,9 @@ export const theme = {
 		body: {
 			fontFamily: "Inter",
 		},
+	},
+	breakpoints: {
+		mobile: "768px",
+		tablet: "1024px",
 	},
 };

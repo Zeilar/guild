@@ -28,6 +28,7 @@ export interface Guild {
 	biography: string;
 	region: "eu" | "na" | "oce";
 	faction: "alliance" | "horde";
+	realm: string;
 	raid_times: RaidTime[];
 	gallery: Image[];
 }

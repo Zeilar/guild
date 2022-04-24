@@ -1,7 +1,7 @@
 import { useFetch } from "use-ful-hooks-ts";
 import { Guild } from "../types/guild";
-import { Introduction } from "./components";
-import { STRAPI_URL } from "./utils/url";
+import { Introduction, RaidTimes } from "./components";
+import { STRAPI_URL } from "./common/config";
 
 export default function App() {
 	const { data, isError, isLoading, isSuccess } = useFetch<Guild>(
@@ -15,12 +15,14 @@ export default function App() {
 	return (
 		<>
 			<Introduction
-				faction="horde"
+				faction={data.faction}
 				name={data.name}
-				realm=""
-				region="eu"
+				realm={data.realm}
+				region={data.region}
 				gallery={data.gallery}
+				biography={data.biography}
 			/>
+			<RaidTimes raid_times={data.raid_times} />
 		</>
 	);
 }

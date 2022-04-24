@@ -47,11 +47,16 @@
       "default": "eu"
     },
     "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "realm": {
+      "type": "string",
+      "required": true
     }
   }
 }

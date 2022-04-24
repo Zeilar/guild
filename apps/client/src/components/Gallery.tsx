@@ -1,7 +1,7 @@
 import { Guild } from "@apps/client/types/guild";
 import { useMemo } from "react";
 import styled, { css, Keyframes, keyframes } from "styled-components";
-import { STRAPI_URL } from "../utils/url";
+import { STRAPI_URL } from "../common/config";
 
 const ANIMATION_PRESENTATION_DURATION = 3000;
 const ANIMATION_CROSSFADE_DURATION = 3000;

@@ -1,9 +1,7 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const SectionTitle = styled.span`
 	text-transform: uppercase;
 	font-size: 3rem;
-	${({ theme }) => css`
-		font-family: ${theme.typography.header.fontFamily};
-	`}
+	font-family: var(--fontfamily-header);
 `;
