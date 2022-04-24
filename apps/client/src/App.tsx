@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useFetch } from "use-ful-hooks-ts";
+import { Guild } from "../types/guild";
+import { Introduction } from "./components";
+import { STRAPI_URL } from "./utils/url";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+	const { data, isError, isLoading, isSuccess } = useFetch<Guild>(
+		`${STRAPI_URL}/api/guilds?populate=raid_times&populate=gallery`
+	);
+
+	if (!isSuccess) {
+		return null;
+	}
+
+	return (
+		<>
+			<Introduction
+				faction="horde"
+				name={data.name}
+				realm=""
+				region="eu"
+				gallery={data.gallery}
+			/>
+		</>
+	);
 }
-
-export default App;

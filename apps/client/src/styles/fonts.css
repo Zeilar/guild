@@ -1,0 +1,11 @@
+@import url(../../node_modules/@fontsource/inter/400.css);
+
+@font-face {
+	src: url(../assets/fonts/Aventura.otf);
+	font-family: Aventura;
+}
+
+@font-face {
+	src: url(../assets/fonts/SemplicitaPro-Medium.otf);
+	font-family: SemplicitaPro;
+}

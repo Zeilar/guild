@@ -1,0 +1,6 @@
+{
+	"root": "apps/client",
+	"sourceRoot": "apps/client/src",
+	"projectType": "application",
+	"tags": []
+}

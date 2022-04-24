@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "guilds",
+  "info": {
+    "singularName": "guild",
+    "pluralName": "guilds",
+    "displayName": "Guild",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "biography": {
+      "type": "text",
+      "required": true,
+      "unique": false
+    },
+    "raid_times": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::raid-time.raid-time",
+      "mappedBy": "guild"
+    },
+    "faction": {
+      "type": "enumeration",
+      "enum": [
+        "alliance",
+        "horde"
+      ],
+      "required": true
+    },
+    "region": {
+      "type": "enumeration",
+      "enum": [
+        "eu",
+        "na",
+        "oce"
+      ],
+      "required": true,
+      "default": "eu"
+    },
+    "gallery": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
