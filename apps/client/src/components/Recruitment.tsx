@@ -7,7 +7,7 @@ import { classes } from "../common/constants";
 
 const OrderHalls = styled.div`
 	display: grid;
-	grid-gap: 0.25rem;
+	grid-gap: 0.5rem;
 	grid-template-columns: repeat(6, 1fr);
 	@media (max-width: 768px) {
 		grid-template-columns: repeat(2, 1fr);
