@@ -31,4 +31,7 @@ export interface Guild {
 	realm: string;
 	raid_times: RaidTime[];
 	gallery: Image[];
+	faction_images: Image[];
+	order_halls_images: Image[];
+	specs_images: Image[];
 }

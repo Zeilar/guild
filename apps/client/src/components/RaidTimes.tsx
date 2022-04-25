@@ -1,13 +1,11 @@
 import styled, { css } from "styled-components";
 import type { Guild } from "../../types/guild";
 import { days } from "../common/constants";
+import { Section, SectionTitle } from ".";
 
-const Wrapper = styled.section`
-	background-color: rgb(15, 15, 15);
-	padding: 2rem var(--container-gutters);
+const Content = styled.div`
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	text-align: center;
 `;
 
 interface RaidTimeWrapperProps {
@@ -16,20 +14,24 @@ interface RaidTimeWrapperProps {
 
 const RaidTimeWrapper = styled.div<RaidTimeWrapperProps>(
 	({ $active }) => css`
+		--skew: 20deg;
+		--skewTransform: skew(calc(-1 * var(--skew)));
 		text-transform: uppercase;
-		transform: skew(-20deg);
 		overflow: hidden;
 		padding: 1rem;
-		background-color: rgb(15, 15, 15);
+		background-color: ${$active ? "rgb(30, 30, 30)" : "rgb(15, 15, 15)"};
 		color: var(--${$active ? "palette-text" : "palette-textMuted"});
 		box-shadow: 0 0 0 2px
 			var(--${$active ? "palette-primary" : "palette-border"});
 		z-index: ${$active ? 10 : 1};
+		transform: ${$active
+			? "var(--skewTransform) scale(1.1)"
+			: "var(--skewTransform)"};
 	`
 );
 
 const RaidTimeContent = styled.div`
-	transform: skew(20deg);
+	transform: skew(var(--skew));
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -37,28 +39,38 @@ const RaidTimeContent = styled.div`
 	height: 100%;
 `;
 
+const ByLine = styled.p`
+	color: var(--palette-textMuted);
+	font-family: var(--fontfamily-header);
+	margin-top: 2rem;
+`;
+
 type Props = Pick<Guild, "raid_times">;
 
 export function RaidTimes({ raid_times }: Props) {
 	return (
-		<Wrapper>
-			{days.map((day, i) => {
-				const raidTime = raid_times.find(
-					raid_time => raid_time.day === day
-				);
-				return (
-					<RaidTimeWrapper $active={Boolean(raidTime)} key={i}>
-						<RaidTimeContent>
-							<span>{day}</span>
-							{raidTime && (
-								<span>
-									{raidTime.start} - {raidTime.end}
-								</span>
-							)}
-						</RaidTimeContent>
-					</RaidTimeWrapper>
-				);
-			})}
-		</Wrapper>
+		<Section>
+			<SectionTitle>Raid times</SectionTitle>
+			<Content>
+				{days.map((day, i) => {
+					const raidTime = raid_times.find(
+						raid_time => raid_time.day === day
+					);
+					return (
+						<RaidTimeWrapper $active={Boolean(raidTime)} key={i}>
+							<RaidTimeContent>
+								<span>{day}</span>
+								{raidTime && (
+									<span>
+										{raidTime.start} - {raidTime.end}
+									</span>
+								)}
+							</RaidTimeContent>
+						</RaidTimeWrapper>
+					);
+				})}
+			</Content>
+			<ByLine>* Server time</ByLine>
+		</Section>
 	);
 }

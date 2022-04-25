@@ -1,12 +1,14 @@
-import { useFetch } from "use-ful-hooks-ts";
-import { Guild } from "../types/guild";
+import { useFetch, useTitle } from "use-ful-hooks-ts";
+import type { Guild } from "../types/guild";
 import { Introduction, RaidTimes } from "./components";
 import { STRAPI_URL } from "./common/config";
+import { Recruitment } from "./components";
 
 export default function App() {
 	const { data, isError, isLoading, isSuccess } = useFetch<Guild>(
-		`${STRAPI_URL}/api/guilds?populate=raid_times&populate=gallery`
+		`${STRAPI_URL}/api/guilds?populate=raid_times,gallery`
 	);
+	useTitle(() => (isSuccess ? data.name : document.title));
 
 	if (!isSuccess) {
 		return null;
@@ -23,6 +25,7 @@ export default function App() {
 				biography={data.biography}
 			/>
 			<RaidTimes raid_times={data.raid_times} />
+			<Recruitment />
 		</>
 	);
 }

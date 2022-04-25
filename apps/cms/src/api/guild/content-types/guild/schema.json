@@ -34,7 +34,8 @@
         "alliance",
         "horde"
       ],
-      "required": true
+      "required": true,
+      "default": "horde"
     },
     "region": {
       "type": "enumeration",
@@ -49,7 +50,7 @@
     "gallery": {
       "type": "media",
       "multiple": true,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
