@@ -7,7 +7,11 @@ import { classes } from "../common/constants";
 
 const OrderHalls = styled.div`
 	display: grid;
+	grid-gap: 0.25rem;
 	grid-template-columns: repeat(6, 1fr);
+	@media (max-width: 768px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
 `;
 
 const ByLine = styled.p`
@@ -25,15 +29,14 @@ interface OrderHallWrapperProps {
 const OrderHallWrapper = styled.div<OrderHallWrapperProps>(
 	({ $src, $active, $class }) => css`
 		--classColor: var(--palette-${$class});
-		--boxShadow: 0 0 5px black, 0 0 50px inset black,
-			0 0 0 50rem inset rgba(0, 0, 0, 0.65);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		box-shadow: var(--boxShadow);
-		transition: 0.25s;
+		box-shadow: 0 0 5px black, 0 0 50px inset black,
+			0 0 0 50rem inset rgba(0, 0, 0, 0.65);
+		transition: transform 0.25s;
 		height: 25rem;
 		background-image: url(${$src});
 		background-position: center;
@@ -41,7 +44,7 @@ const OrderHallWrapper = styled.div<OrderHallWrapperProps>(
 		color: var(--classColor);
 		filter: ${!$active ? "grayscale(1)" : "none"};
 		&:hover {
-			box-shadow: var(--boxShadow), 0 0 50px inset var(--classColor);
+			border: 2px solid var(--classColor);
 			transform: scale(1.05);
 			z-index: 10;
 		}
@@ -51,19 +54,25 @@ const OrderHallWrapper = styled.div<OrderHallWrapperProps>(
 const OrderHallHeader = styled.span`
 	text-shadow: 0px 2px 10px black;
 	font-family: var(--fontfamily-header);
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	position: absolute;
-	top: 2rem;
+	top: 0;
+	padding: 1rem;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.65);
 `;
 
 const Specs = styled.div`
-	display: grid;
-	grid-gap: 0.5rem;
+	display: flex;
+	grid-gap: 1rem;
+	padding: 1rem;
+	justify-content: center;
+	flex-wrap: wrap;
 `;
 
 const Spec = styled.img`
 	width: 50px;
-	box-shadow: 0 0 0 2px black;
+	box-shadow: 0 0 0 4px black;
 `;
 
 interface SpecContainerProps {

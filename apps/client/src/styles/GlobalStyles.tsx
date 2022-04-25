@@ -1,5 +1,6 @@
-import { createGlobalStyle, css } from "styled-components";
-import { Theme } from "../theme";
+import "./fonts.css";
+
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
     :root {
@@ -24,12 +25,9 @@ export const GlobalStyles = createGlobalStyle`
         --fontfamily-brand: Aventura;
         --fontfamily-header: SemplicitaPro;
         --fontfamily-body: Inter;
-        ${({ theme }: { theme: Theme }) => css`
-			font-family: ${theme.typography.brand.fontFamily};
-			@media (max-width: ${theme.breakpoints.mobile}) {
-				--container-gutters: 1rem;
-			}
-		`}
+        @media (max-width: 768px) {
+            --container-gutters: 1rem;
+        }
     }
 
     *,
