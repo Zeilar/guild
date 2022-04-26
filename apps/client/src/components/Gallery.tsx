@@ -35,7 +35,6 @@ interface GalleryImageProps {
 const GalleryImage = styled.img<GalleryImageProps>(
 	({ delay, duration, keyframes }) => css`
 		z-index: -1;
-		inset: 0;
 		object-fit: cover;
 		width: 100%;
 		height: 100%;

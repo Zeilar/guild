@@ -1,10 +1,11 @@
 import "./fonts.css";
+import parallaxBg from "../assets/images/parallax-bg.jpg";
 
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
     :root {
-        --container-gutters: 20rem; 
+        --container-max-width: 70rem;
         --palette-primary: #ff0055;
         --palette-secondary: gray;
         --palette-text: rgb(225, 225, 225);
@@ -25,9 +26,6 @@ export const GlobalStyles = createGlobalStyle`
         --fontfamily-brand: Aventura;
         --fontfamily-header: SemplicitaPro;
         --fontfamily-body: Inter;
-        @media (max-width: 768px) {
-            --container-gutters: 1rem;
-        }
     }
 
     *,
@@ -47,8 +45,16 @@ export const GlobalStyles = createGlobalStyle`
     body {
         background-color: rgb(10, 10, 10);
         color: var(--palette-text);
-        overflow-x: hidden;
+        overflow: hidden;
         font-family: var(--fontfamily-body);
+    }
+
+    #root {
+        --perspective: 10px;
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        perspective: var(--perspective);
     }
 
     img {

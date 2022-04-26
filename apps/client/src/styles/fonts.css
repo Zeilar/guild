@@ -9,3 +9,8 @@
 	src: url(../assets/fonts/SemplicitaPro-Medium.otf);
 	font-family: SemplicitaPro;
 }
+
+@font-face {
+	src: url(../assets/fonts/SemplicitaPro-Bold.otf);
+	font-family: SemplicitaPro-Bold;
+}

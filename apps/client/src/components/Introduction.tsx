@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { Gallery } from ".";
+import { Gallery, Container } from ".";
 import { useState } from "react";
 import type { Guild } from "@apps/client/types/guild";
 import { useOnMount } from "use-ful-hooks-ts";
 
 const Header = styled.header`
 	--header-height: 30rem;
-	box-shadow: 0 0 0 var(--header-height) inset rgba(0, 0, 0, 0.75);
 	position: relative;
 	min-height: var(--header-height);
 	overflow: hidden;
@@ -14,10 +13,18 @@ const Header = styled.header`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: 4rem var(--container-gutters);
+	padding: 4rem;
 	text-shadow: 0px 2px 10px black;
+	&::after {
+		content: "";
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		background-color: rgba(0, 0, 0, 0.65);
+		z-index: -1;
+	}
 	@media (max-width: 768px) {
-		padding: var(--container-gutters);
+		padding: 1rem;
 	}
 `;
 
@@ -39,7 +46,7 @@ const Location = styled.h2`
 
 const Faction = styled.img`
 	width: 5rem;
-	margin-left: auto;
+	margin-left: 5rem;
 	font-family: var(--fontfamily-brand);
 	@media (max-width: 768px) {
 		width: 4rem;
@@ -51,10 +58,6 @@ const Biography = styled.p`
 	line-height: 1.5;
 	white-space: pre-line;
 	font-family: var(--fontfamily-body);
-	max-width: 75%;
-	@media (max-width: 768px) {
-		max-width: unset;
-	}
 `;
 
 const Content = styled.div`
@@ -94,22 +97,24 @@ export function Introduction({
 
 	return (
 		<Header>
-			<Content>
-				<Meta>
-					<Name>{name}</Name>
-					{factionIcon && (
-						<Faction
-							src={factionIcon}
-							alt={faction}
-							title={faction}
-						/>
-					)}
-				</Meta>
-				<Location>
-					{realm} - {region}
-				</Location>
-				<Biography>{biography}</Biography>
-			</Content>
+			<Container>
+				<Content>
+					<Meta>
+						<Name>{name}</Name>
+						{factionIcon && (
+							<Faction
+								src={factionIcon}
+								alt={faction}
+								title={faction}
+							/>
+						)}
+					</Meta>
+					<Location>
+						{realm} - {region}
+					</Location>
+					<Biography>{biography}</Biography>
+				</Content>
+			</Container>
 			<Gallery images={gallery} />
 		</Header>
 	);

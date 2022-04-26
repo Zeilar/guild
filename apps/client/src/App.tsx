@@ -1,8 +1,7 @@
 import { useFetch, useTitle } from "use-ful-hooks-ts";
 import type { Guild } from "../types/guild";
-import { Introduction, RaidTimes } from "./components";
 import { STRAPI_URL } from "./common/config";
-import { Recruitment } from "./components";
+import { Recruitment, Apply, Introduction, RaidTimes } from "./components";
 
 export default function App() {
 	const { data, isError, isLoading, isSuccess } = useFetch<Guild>(
@@ -26,6 +25,7 @@ export default function App() {
 			/>
 			<RaidTimes raid_times={data.raid_times} />
 			<Recruitment />
+			<Apply />
 		</>
 	);
 }

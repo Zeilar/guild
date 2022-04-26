@@ -2,7 +2,7 @@ import { Class } from "@apps/client/types/class";
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import { useOnMount } from "use-ful-hooks-ts";
-import { Section, SectionTitle } from ".";
+import { Section, SectionTitle, Container } from ".";
 import { classes } from "../common/constants";
 
 const OrderHalls = styled.div`
@@ -124,13 +124,15 @@ function OrderHallContainer({ $class }: OrderHallContainerProps) {
 export function Recruitment() {
 	return (
 		<Section>
-			<SectionTitle>Recruitment</SectionTitle>
-			<OrderHalls>
-				{classes.map($class => (
-					<OrderHallContainer $class={$class} key={$class.name} />
-				))}
-			</OrderHalls>
-			<ByLine>We will always consider exceptional applicants!</ByLine>
+			<Container>
+				<SectionTitle>Recruitment</SectionTitle>
+				<OrderHalls>
+					{classes.map($class => (
+						<OrderHallContainer $class={$class} key={$class.name} />
+					))}
+				</OrderHalls>
+				<ByLine>We will always consider exceptional applicants!</ByLine>
+			</Container>
 		</Section>
 	);
 }
