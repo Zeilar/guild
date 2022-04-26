@@ -22,16 +22,18 @@ const ArrowRightWrapper = styled(ArrowRight)`
 	fill: var(--color);
 	transition: inherit;
 	width: 0;
+	filter: drop-shadow(0px 3px 3px black);
 `;
 
 const Link = styled.a`
 	--size: 3rem;
 	--color: var(--palette-text);
+	text-shadow: 0px 2px 10px black;
 	transition: 0.25s;
 	display: flex;
 	font-family: var(--fontfamily-brand);
-	text-transform: uppercase;
 	color: var(--color);
+	text-transform: uppercase;
 	text-decoration: none;
 	font-size: var(--size);
 	&:hover {

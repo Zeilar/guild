@@ -43,12 +43,17 @@ const OrderHallWrapper = styled.div<OrderHallWrapperProps>(
 		background-position: center;
 		background-size: cover;
 		color: var(--classColor);
-		filter: ${!$active ? "grayscale(1)" : "none"};
-		&:hover {
-			border: 2px solid var(--classColor);
-			transform: scale(1.05);
-			z-index: 10;
-		}
+		${$active
+			? css`
+					&:hover {
+						border: 2px solid var(--classColor);
+						transform: scale(1.05);
+						z-index: 10;
+					}
+			  `
+			: css`
+					filter: grayscale(1);
+			  `}
 	`
 );
 

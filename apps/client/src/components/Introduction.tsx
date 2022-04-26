@@ -48,6 +48,7 @@ const Faction = styled.img`
 	width: 5rem;
 	margin-left: 5rem;
 	font-family: var(--fontfamily-brand);
+	filter: drop-shadow(0px 3px 3px black);
 	@media (max-width: 768px) {
 		width: 4rem;
 	}
