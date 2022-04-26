@@ -1,5 +1,4 @@
 import "./fonts.css";
-import parallaxBg from "../assets/images/parallax-bg.jpg";
 
 import { createGlobalStyle } from "styled-components";
 

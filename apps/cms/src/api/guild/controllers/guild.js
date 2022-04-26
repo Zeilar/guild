@@ -20,6 +20,7 @@ module.exports = createCoreController("api::guild.guild", () => ({
 		const guild = data[0].attributes;
 		guild.gallery = mapCollection(guild.gallery.data);
 		guild.raid_times = mapCollection(guild.raid_times.data);
+		guild.recruitments = mapCollection(guild.recruitments.data);
 		return guild;
 	},
 }));

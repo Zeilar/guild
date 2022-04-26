@@ -5,6 +5,15 @@ export interface RaidTime {
 	end: string;
 }
 
+export interface Recruitment {
+	id: number;
+	class: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+	spec: string;
+}
+
 export interface ImageFormat {
 	width: number;
 	height: number;
@@ -34,4 +43,5 @@ export interface Guild {
 	faction_images: Image[];
 	order_halls_images: Image[];
 	specs_images: Image[];
+	recruitments: Recruitment[];
 }

@@ -5,7 +5,7 @@ import { Recruitment, Apply, Introduction, RaidTimes } from "./components";
 
 export default function App() {
 	const { data, isError, isLoading, isSuccess } = useFetch<Guild>(
-		`${STRAPI_URL}/api/guilds?populate=raid_times,gallery`
+		`${STRAPI_URL}/api/guilds?populate=raid_times,gallery,recruitments`
 	);
 	useTitle(() => (isSuccess ? data.name : document.title));
 
@@ -24,7 +24,7 @@ export default function App() {
 				biography={data.biography}
 			/>
 			<RaidTimes raid_times={data.raid_times} />
-			<Recruitment />
+			<Recruitment recruitments={data.recruitments} />
 			<Apply />
 		</>
 	);

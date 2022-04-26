@@ -1,4 +1,5 @@
 import { Class } from "@apps/client/types/class";
+import type { Guild } from "@apps/client/types/guild";
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import { useOnMount } from "use-ful-hooks-ts";
@@ -94,9 +95,10 @@ function SpecContainer({ $class, spec }: SpecContainerProps) {
 
 interface OrderHallContainerProps {
 	$class: Class;
+	recruitments: Props["recruitments"];
 }
 
-function OrderHallContainer({ $class }: OrderHallContainerProps) {
+function OrderHallContainer({ $class, recruitments }: OrderHallContainerProps) {
 	const [image, setImage] = useState<string | undefined>();
 
 	useOnMount(() => {
@@ -106,10 +108,14 @@ function OrderHallContainer({ $class }: OrderHallContainerProps) {
 	});
 
 	return (
-		<OrderHallWrapper $class={$class.slug} $active={true} $src={image}>
+		<OrderHallWrapper
+			$class={$class.slug}
+			$active={recruitments.length > 0}
+			$src={image}
+		>
 			<OrderHallHeader>{$class.name}</OrderHallHeader>
 			<Specs>
-				{$class.specs.map(spec => (
+				{recruitments.map(({ spec }) => (
 					<SpecContainer
 						key={`${$class}-${spec}`}
 						$class={$class.slug}
@@ -121,14 +127,24 @@ function OrderHallContainer({ $class }: OrderHallContainerProps) {
 	);
 }
 
-export function Recruitment() {
+type Props = Pick<Guild, "recruitments">;
+
+export function Recruitment({ recruitments }: Props) {
 	return (
 		<Section>
 			<Container>
 				<SectionTitle>Recruitment</SectionTitle>
 				<OrderHalls>
 					{classes.map($class => (
-						<OrderHallContainer $class={$class} key={$class.name} />
+						<OrderHallContainer
+							recruitments={recruitments.filter(
+								recruitment =>
+									recruitment.class.toLowerCase() ===
+									$class.name.toLowerCase()
+							)}
+							$class={$class}
+							key={$class.name}
+						/>
 					))}
 				</OrderHalls>
 				<ByLine>We will always consider exceptional applicants!</ByLine>

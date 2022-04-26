@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recruitments",
+  "info": {
+    "singularName": "recruitment",
+    "pluralName": "recruitments",
+    "displayName": "Recruitment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "class": {
+      "type": "string",
+      "regex": "^death knight|demon hunter|druid|hunter|mage|monk|paladin|priest|Rogue|shaman|warlock|warrior$",
+      "required": true
+    },
+    "spec": {
+      "type": "string",
+      "required": true,
+      "regex": "^blood|frost|unholy|havoc|vengeance|balance|feral|guardian|restoration|beast_mastery|marksmanship|survival|arcane|fire|frost|brewmaster|mistweaver|windwalker|holy|protection|retribution|discipline|holy|shadow|assassination|outlaw|subtlety|elemental|enhancement|restoration|affliction|demonology|destruction|arms|fury|protection$"
+    },
+    "guild": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::guild.guild",
+      "inversedBy": "recruitments"
+    }
+  }
+}

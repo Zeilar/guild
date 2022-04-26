@@ -58,6 +58,12 @@
     "realm": {
       "type": "string",
       "required": true
+    },
+    "recruitments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recruitment.recruitment",
+      "mappedBy": "guild"
     }
   }
 }
