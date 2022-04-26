@@ -8,7 +8,6 @@ import { classes } from "../common/constants";
 
 const OrderHalls = styled.div`
 	display: grid;
-	grid-gap: 0.5rem;
 	grid-template-columns: repeat(6, 1fr);
 	@media (max-width: 768px) {
 		grid-template-columns: repeat(2, 1fr);
@@ -59,13 +58,13 @@ const OrderHallWrapper = styled.div<OrderHallWrapperProps>(
 
 const OrderHallHeader = styled.span`
 	text-shadow: 0px 2px 10px black;
-	font-family: var(--fontfamily-header);
+	font-family: var(--fontfamily-header-bold);
 	font-size: 1.25rem;
 	position: absolute;
 	top: 0;
+	font-weight: 700;
 	padding: 1rem;
 	width: 100%;
-	background-color: rgba(0, 0, 0, 0.65);
 `;
 
 const Specs = styled.div`

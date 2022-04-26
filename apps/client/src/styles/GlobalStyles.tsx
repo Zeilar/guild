@@ -23,6 +23,7 @@ export const GlobalStyles = createGlobalStyle`
         --palette-mage: rgb(64,199,235);
         --palette-monk: rgb(0,255,152);
         --fontfamily-brand: Aventura;
+        --fontfamily-header-bold: SemplicitaPro-Bold;
         --fontfamily-header: SemplicitaPro;
         --fontfamily-body: Inter;
     }
