@@ -15,6 +15,7 @@ const Wrapper = styled.section`
 	z-index: -1;
 	transform: translateZ(calc(-1 * var(--perspective))) scale(2);
 	box-shadow: 0 0 0 100vmax inset rgba(0, 0, 0, 0.65);
+	padding: 1rem;
 `;
 
 const ArrowRightWrapper = styled(ArrowRight)`
@@ -22,13 +23,11 @@ const ArrowRightWrapper = styled(ArrowRight)`
 	fill: var(--color);
 	transition: inherit;
 	width: 0;
-	filter: drop-shadow(0px 3px 3px black);
 `;
 
 const Link = styled.a`
 	--size: 3rem;
 	--color: var(--palette-text);
-	text-shadow: 0px 2px 10px black;
 	transition: 0.25s;
 	display: flex;
 	font-family: var(--fontfamily-brand);
@@ -42,6 +41,9 @@ const Link = styled.a`
 			margin-left: 1rem;
 			width: var(--size);
 		}
+	}
+	@media (max-width: 768px) {
+		--size: 2rem;
 	}
 `;
 

@@ -21,7 +21,7 @@
 	},
 	"scripts": {
 		"serve": "craco start",
-		"build": "BUILD_PATH=../../dist/apps/client craco build",
+		"build": "craco build",
 		"test": "craco test",
 		"eject": "react-scripts eject"
 	},

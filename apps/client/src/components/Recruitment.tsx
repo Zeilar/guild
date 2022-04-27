@@ -18,6 +18,7 @@ const ByLine = styled.p`
 	color: var(--palette-textMuted);
 	font-family: var(--fontfamily-header);
 	margin-top: 2rem;
+	text-align: left;
 `;
 
 interface OrderHallWrapperProps {

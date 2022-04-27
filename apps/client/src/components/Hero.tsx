@@ -24,6 +24,7 @@ const Header = styled.header`
 		z-index: -1;
 	}
 	@media (max-width: 768px) {
+		min-height: unset;
 		padding: 1rem;
 	}
 `;
@@ -50,15 +51,9 @@ const Faction = styled.img`
 	font-family: var(--fontfamily-brand);
 	filter: drop-shadow(0px 3px 3px black);
 	@media (max-width: 768px) {
-		width: 4rem;
+		width: 3rem;
+		margin-left: 1rem;
 	}
-`;
-
-const Biography = styled.p`
-	margin-top: 2rem;
-	line-height: 1.5;
-	white-space: pre-line;
-	font-family: var(--fontfamily-body);
 `;
 
 const Content = styled.div`
@@ -75,19 +70,12 @@ const Meta = styled.div`
 	font-family: var(--fontfamily-brand);
 `;
 
-type IntroductionProps = Pick<
+type HeroProps = Pick<
 	Guild,
-	"faction" | "gallery" | "name" | "realm" | "region" | "biography"
+	"faction" | "gallery" | "name" | "realm" | "region"
 >;
 
-export function Introduction({
-	faction,
-	gallery,
-	name,
-	realm,
-	region,
-	biography,
-}: IntroductionProps) {
+export function Hero({ faction, gallery, name, realm, region }: HeroProps) {
 	const [factionIcon, setFactionIcon] = useState<string>();
 
 	useOnMount(() => {
@@ -113,7 +101,6 @@ export function Introduction({
 					<Location>
 						{realm} - {region}
 					</Location>
-					<Biography>{biography}</Biography>
 				</Content>
 			</Container>
 			<Gallery images={gallery} />

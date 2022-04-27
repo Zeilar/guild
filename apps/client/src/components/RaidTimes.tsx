@@ -6,6 +6,11 @@ import { Section, SectionTitle, Container } from ".";
 const Content = styled.div`
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
+	@media (max-width: 768px) {
+		grid-template-columns: repeat(1, 1fr);
+		padding: 1rem 2rem;
+		grid-gap: 1rem;
+	}
 `;
 
 interface RaidTimeWrapperProps {
@@ -43,6 +48,7 @@ const ByLine = styled.p`
 	color: var(--palette-textMuted);
 	font-family: var(--fontfamily-header);
 	margin-top: 2rem;
+	text-align: left;
 `;
 
 type Props = Pick<Guild, "raid_times">;
