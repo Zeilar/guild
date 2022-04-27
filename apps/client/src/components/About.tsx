@@ -18,6 +18,7 @@ const Biography = styled.p`
 const Image = styled.img`
 	object-fit: cover;
 	border-radius: 2px;
+	box-shadow: 0 0 5px black;
 `;
 
 const Column = styled.div`
