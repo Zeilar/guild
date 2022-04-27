@@ -24,5 +24,6 @@ export const SectionTitle = styled.span`
 	@media (max-width: 768px) {
 		font-size: 1.5rem;
 		margin-bottom: 1rem;
+		padding-bottom: 0.5rem;
 	}
 `;
