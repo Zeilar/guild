@@ -64,6 +64,14 @@
       "relation": "oneToMany",
       "target": "api::recruitment.recruitment",
       "mappedBy": "guild"
+    },
+    "about_cover": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }

@@ -44,4 +44,5 @@ export interface Guild {
 	order_halls_images: Image[];
 	specs_images: Image[];
 	recruitments: Recruitment[];
+	about_cover: Image;
 }
