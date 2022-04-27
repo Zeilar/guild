@@ -20,14 +20,23 @@ const Image = styled.img`
 	border-radius: 2px;
 `;
 
-const ImageContainer = styled.div`
-	width: 100%;
+const Column = styled.div`
+	width: 50%;
+	@media (max-width: 768px) {
+		width: unset;
+		&:nth-child(1) {
+			order: 2;
+		}
+	}
 `;
 
 const Content = styled(Container)`
 	flex-direction: row;
 	gap: 1rem;
 	text-align: left;
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 `;
 
 type AboutProps = Pick<Guild, "biography" | "about_cover">;
@@ -36,18 +45,18 @@ export function About({ about_cover, biography }: AboutProps) {
 	return (
 		<Section>
 			<Content>
-				<div>
+				<Column>
 					<SectionTitle>Who we are</SectionTitle>
 					<Biography>{biography}</Biography>
-				</div>
-				<ImageContainer>
+				</Column>
+				<Column>
 					<Image
 						src={`${STRAPI_URL}${about_cover.url}`}
 						alt={about_cover.alternativeText}
 						height="100%"
 						width="100%"
 					/>
-				</ImageContainer>
+				</Column>
 			</Content>
 		</Section>
 	);
