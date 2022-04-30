@@ -32,6 +32,10 @@ const Column = styled.div`
 		margin-right: 5rem;
 		width: 60%;
 		transition-delay: 0.5s;
+		@media (max-width: 768px) {
+			margin-right: 0;
+			width: unset;
+		}
 	}
 	&.show {
 		transform: translateX(0);
@@ -58,12 +62,18 @@ const Content = styled(Container)`
 type AboutProps = Pick<Guild, "biography" | "about_cover">;
 
 export function About({ about_cover, biography }: AboutProps) {
-	const biographyElement = useObservable(element => {
-		element.classList.add("show");
-	});
-	const coverElement = useObservable(element => {
-		element.classList.add("show");
-	});
+	const biographyElement = useObservable(
+		element => {
+			element.classList.add("show");
+		},
+		{ unobserveOnIntersection: true, threshold: 0.5 }
+	);
+	const coverElement = useObservable(
+		element => {
+			element.classList.add("show");
+		},
+		{ unobserveOnIntersection: true, threshold: 0.5 }
+	);
 	return (
 		<Section>
 			<Content>

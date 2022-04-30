@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import type { Guild } from "../../types/guild";
+import type { Guild, RaidTime } from "../../types/guild";
 import { days } from "../common/constants";
 import { Section, SectionTitle, Container } from ".";
 import { useObservable } from "../hooks";
@@ -22,21 +22,12 @@ const raidTimeAnimation = keyframes`
 const Content = styled.div`
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	> div {
-		user-select: none;
-		transform: var(--skewTransform) var(--scaleTransform);
-		opacity: 0;
-	}
-	&.show > div {
-		user-select: all;
-		animation: ${raidTimeAnimation} 0.5s forwards;
-	}
 	${css`
 		${[1, 2, 3, 4, 5, 6, 7]
 			.map(
 				e => `
                 > div:nth-child(${e}) {
-                    animation-delay: ${e * 50}ms;
+                    animation-delay: ${e * 10}ms;
                 }   
             `
 			)
@@ -67,6 +58,12 @@ const RaidTimeWrapper = styled.div<RaidTimeWrapperProps>(
 			var(--${$active ? "palette-primary" : "palette-border"});
 		z-index: ${$active ? 10 : 1};
 		transform: var(--skewTransform) var(--scaleTransform);
+		user-select: none;
+		opacity: 0;
+		&.show {
+			user-select: all;
+			animation: ${raidTimeAnimation} 0.5s forwards;
+		}
 	`
 );
 
@@ -86,38 +83,51 @@ const ByLine = styled.p`
 	text-align: left;
 `;
 
-type Props = Pick<Guild, "raid_times">;
+interface RaidTimeContainerProps {
+	raidTime: RaidTime | undefined;
+	day: string;
+}
 
-export function RaidTimes({ raid_times }: Props) {
-	const daysElement = useObservable(
+function RaidTimeContainer({ raidTime, day }: RaidTimeContainerProps) {
+	const ref = useObservable(
 		element => {
 			element.classList.add("show");
 		},
-		{ threshold: 1 }
+		{ threshold: 0.5, unobserveOnIntersection: true }
 	);
+
+	return (
+		<RaidTimeWrapper $active={Boolean(raidTime)} ref={ref}>
+			<RaidTimeContent>
+				<span>{day}</span>
+				{raidTime && (
+					<span>
+						{raidTime.start} - {raidTime.end}
+					</span>
+				)}
+			</RaidTimeContent>
+		</RaidTimeWrapper>
+	);
+}
+
+type Props = Pick<Guild, "raid_times">;
+
+export function RaidTimes({ raid_times }: Props) {
 	return (
 		<Section>
 			<Container>
 				<SectionTitle>Raid times</SectionTitle>
-				<Content ref={daysElement}>
+				<Content>
 					{days.map((day, i) => {
 						const raidTime = raid_times.find(
 							raid_time => raid_time.day === day
 						);
 						return (
-							<RaidTimeWrapper
-								$active={Boolean(raidTime)}
+							<RaidTimeContainer
+								raidTime={raidTime}
+								day={day}
 								key={i}
-							>
-								<RaidTimeContent>
-									<span>{day}</span>
-									{raidTime && (
-										<span>
-											{raidTime.start} - {raidTime.end}
-										</span>
-									)}
-								</RaidTimeContent>
-							</RaidTimeWrapper>
+							/>
 						);
 					})}
 				</Content>

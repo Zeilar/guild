@@ -38,7 +38,7 @@ const OrderHallWrapper = styled.div<OrderHallWrapperProps>(
 		position: relative;
 		box-shadow: 0 0 5px black, 0 0 50px inset black,
 			0 0 0 50rem inset rgba(0, 0, 0, 0.65);
-		transition: transform 0.25s, filter 0.5s 0.5s ease;
+		transition: transform 0.25s, filter 0.5s 0.25s, opacity 0.5s 0.25s;
 		height: 25rem;
 		background-image: url(${$src});
 		background-position: center;
@@ -118,7 +118,7 @@ function OrderHallContainer({ $class, recruitments }: OrderHallContainerProps) {
 				element.classList.add("show");
 			}
 		},
-		{ threshold: 1, unobserveOnIntersection: true }
+		{ threshold: 0.5, unobserveOnIntersection: true }
 	);
 
 	useOnMount(() => {
