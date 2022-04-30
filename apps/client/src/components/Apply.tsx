@@ -50,7 +50,7 @@ const Link = styled.a`
 export function Apply() {
 	return (
 		<Wrapper>
-			<Link target="_blank" href="#">
+			<Link target="_blank" href={process.env.REACT_APP_APPLY_URL}>
 				Apply Now
 				<ArrowRightWrapper />
 			</Link>
