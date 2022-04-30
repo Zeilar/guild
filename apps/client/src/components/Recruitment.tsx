@@ -49,7 +49,7 @@ const OrderHallWrapper = styled.div<OrderHallWrapperProps>(
 		filter: grayscale(1);
 		&.show {
 			filter: grayscale(0);
-			user-select: all;
+			user-select: auto;
 			opacity: 1;
 		}
 		${$active &&

@@ -61,7 +61,7 @@ const RaidTimeWrapper = styled.div<RaidTimeWrapperProps>(
 		user-select: none;
 		opacity: 0;
 		&.show {
-			user-select: all;
+			user-select: auto;
 			animation: ${raidTimeAnimation} 0.5s forwards;
 		}
 	`
