@@ -7,3 +7,4 @@ export * from "./Gallery";
 export * from "./Apply";
 export * from "./Container";
 export * from "./About";
+export * from "./PageSpinner";
