@@ -67,6 +67,7 @@ const Content = styled.div`
 const Meta = styled.div`
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	font-family: var(--fontfamily-brand);
 `;
 
