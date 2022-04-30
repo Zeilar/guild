@@ -44,9 +44,13 @@ const OrderHallWrapper = styled.div<OrderHallWrapperProps>(
 		background-position: center;
 		background-size: cover;
 		color: var(--classColor);
+		user-select: none;
+		opacity: 0.5;
 		filter: grayscale(1);
 		&.show {
 			filter: grayscale(0);
+			user-select: all;
+			opacity: 1;
 		}
 		${$active &&
 		`
@@ -108,11 +112,14 @@ interface OrderHallContainerProps {
 function OrderHallContainer({ $class, recruitments }: OrderHallContainerProps) {
 	const [image, setImage] = useState<string | undefined>();
 	const isRecruiting = recruitments.length > 0;
-	const ref = useObservable(element => {
-		if (isRecruiting) {
-			element.classList.add("show");
-		}
-	});
+	const ref = useObservable(
+		element => {
+			if (isRecruiting) {
+				element.classList.add("show");
+			}
+		},
+		{ threshold: 1, unobserveOnIntersection: true }
+	);
 
 	useOnMount(() => {
 		import(`../assets/images/order_halls/${$class.slug}.jpg`).then(module =>

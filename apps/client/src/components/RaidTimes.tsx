@@ -23,10 +23,12 @@ const Content = styled.div`
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
 	> div {
+		user-select: none;
 		transform: var(--skewTransform) var(--scaleTransform);
 		opacity: 0;
 	}
 	&.show > div {
+		user-select: all;
 		animation: ${raidTimeAnimation} 0.5s forwards;
 	}
 	${css`
