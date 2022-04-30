@@ -1,6 +1,7 @@
 import { Guild } from "@apps/client/types/guild";
 import styled from "styled-components";
 import { STRAPI_URL } from "../common/config";
+import { useObservable } from "../hooks";
 import { Container } from "./Container";
 import { Section } from "./Section";
 import { SectionTitle } from "./SectionTitle";
@@ -22,9 +23,23 @@ const Image = styled.img`
 `;
 
 const Column = styled.div`
-	width: 50%;
+	opacity: 0;
+	transform: translateX(2rem);
+	width: 40%;
+	transition: 1s 1s;
+	&:first-child {
+		transform: translateX(-2rem);
+		margin-right: 5rem;
+		width: 60%;
+		transition-delay: 0.5s;
+	}
+	&.show {
+		transform: translateX(0);
+		opacity: 1;
+	}
 	@media (max-width: 768px) {
 		width: unset;
+		margin-right: 0;
 		&:nth-child(1) {
 			order: 2;
 		}
@@ -43,14 +58,20 @@ const Content = styled(Container)`
 type AboutProps = Pick<Guild, "biography" | "about_cover">;
 
 export function About({ about_cover, biography }: AboutProps) {
+	const biographyElement = useObservable(element => {
+		element.classList.add("show");
+	});
+	const coverElement = useObservable(element => {
+		element.classList.add("show");
+	});
 	return (
 		<Section>
 			<Content>
-				<Column>
+				<Column ref={biographyElement}>
 					<SectionTitle>Who we are</SectionTitle>
 					<Biography>{biography}</Biography>
 				</Column>
-				<Column>
+				<Column ref={coverElement}>
 					<Image
 						src={`${STRAPI_URL}${about_cover.url}`}
 						alt={about_cover.alternativeText}

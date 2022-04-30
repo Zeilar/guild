@@ -1,26 +1,27 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": true,
-    "allowSyntheticDefaultImports": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "removeComments": true,
-    "jsx": "preserve",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": ["es2017", "dom"],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@libs/*": ["libs/*"],
-      "@apps/*": ["apps/*"]
-    }
-  },
-  "exclude": ["node_modules", "tmp"]
+	"compileOnSave": false,
+	"compilerOptions": {
+		"rootDir": ".",
+		"sourceMap": true,
+		"allowSyntheticDefaultImports": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"removeComments": true,
+		"jsx": "preserve",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"target": "es2015",
+		"module": "esnext",
+		"lib": ["es2017", "dom"],
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"strict": true,
+		"baseUrl": ".",
+		"paths": {
+			"@libs/*": ["libs/*"],
+			"@apps/*": ["apps/*"]
+		}
+	},
+	"exclude": ["node_modules", "tmp"]
 }

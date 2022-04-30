@@ -5,6 +5,7 @@ import styled, { css } from "styled-components";
 import { useOnMount } from "use-ful-hooks-ts";
 import { Section, SectionTitle, Container } from ".";
 import { classes } from "../common/constants";
+import { useObservable } from "../hooks";
 
 const OrderHalls = styled.div`
 	display: grid;
@@ -22,7 +23,7 @@ const ByLine = styled.p`
 `;
 
 interface OrderHallWrapperProps {
-	$src: string;
+	$src?: string;
 	$active: boolean;
 	$class: string;
 }
@@ -37,23 +38,24 @@ const OrderHallWrapper = styled.div<OrderHallWrapperProps>(
 		position: relative;
 		box-shadow: 0 0 5px black, 0 0 50px inset black,
 			0 0 0 50rem inset rgba(0, 0, 0, 0.65);
-		transition: transform 0.25s;
+		transition: transform 0.25s, filter 0.5s 0.5s ease;
 		height: 25rem;
 		background-image: url(${$src});
 		background-position: center;
 		background-size: cover;
 		color: var(--classColor);
-		${$active
-			? css`
-					&:hover {
-						border: 2px solid var(--classColor);
-						transform: scale(1.05);
-						z-index: 10;
-					}
-			  `
-			: css`
-					filter: grayscale(1);
-			  `}
+		filter: grayscale(1);
+		&.show {
+			filter: grayscale(0);
+		}
+		${$active &&
+		`
+            &:hover {
+                border: 2px solid var(--classColor);
+                transform: scale(1.05);
+                z-index: 10;
+            }
+        `}
 	`
 );
 
@@ -105,6 +107,12 @@ interface OrderHallContainerProps {
 
 function OrderHallContainer({ $class, recruitments }: OrderHallContainerProps) {
 	const [image, setImage] = useState<string | undefined>();
+	const isRecruiting = recruitments.length > 0;
+	const ref = useObservable(element => {
+		if (isRecruiting) {
+			element.classList.add("show");
+		}
+	});
 
 	useOnMount(() => {
 		import(`../assets/images/order_halls/${$class.slug}.jpg`).then(module =>
@@ -115,8 +123,9 @@ function OrderHallContainer({ $class, recruitments }: OrderHallContainerProps) {
 	return (
 		<OrderHallWrapper
 			$class={$class.slug}
-			$active={recruitments.length > 0}
+			$active={isRecruiting}
 			$src={image}
+			ref={ref}
 		>
 			<OrderHallHeader>{$class.name}</OrderHallHeader>
 			<Specs>
