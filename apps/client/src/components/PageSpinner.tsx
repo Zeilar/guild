@@ -13,6 +13,7 @@ const Wrapper = styled.div<Props>(
         align-items: center;
         transition: 1s;
         opacity: ${isLoading ? 1 : 0};
+        pointer-events: none;
 	`
 );
 
