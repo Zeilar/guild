@@ -25,12 +25,11 @@ const ByLine = styled.p`
 
 interface OrderHallWrapperProps {
 	$src?: string;
-	$active: boolean;
 	$class: string;
 }
 
 const OrderHallWrapper = styled.div<OrderHallWrapperProps>(
-	({ $src, $active, $class }) => css`
+	({ $src, $class }) => css`
 		--classColor: var(--palette-${$class});
 		display: flex;
 		flex-direction: column;
@@ -53,14 +52,6 @@ const OrderHallWrapper = styled.div<OrderHallWrapperProps>(
 			user-select: auto;
 			opacity: 1;
 		}
-		${$active &&
-		`
-            &:hover {
-                border: 2px solid var(--classColor);
-                transform: scale(1.05);
-                z-index: 10;
-            }
-        `}
 	`
 );
 
@@ -112,10 +103,9 @@ interface OrderHallContainerProps {
 
 function OrderHallContainer({ $class, recruitments }: OrderHallContainerProps) {
 	const [image, setImage] = useState<string | undefined>();
-	const isRecruiting = recruitments.length > 0;
 	const ref = useObservable(
 		element => {
-			if (isRecruiting) {
+			if (recruitments.length > 0) {
 				element.classList.add("show");
 			}
 		},
@@ -129,12 +119,7 @@ function OrderHallContainer({ $class, recruitments }: OrderHallContainerProps) {
 	});
 
 	return (
-		<OrderHallWrapper
-			$class={$class.slug}
-			$active={isRecruiting}
-			$src={image}
-			ref={ref}
-		>
+		<OrderHallWrapper $class={$class.slug} $src={image} ref={ref}>
 			<OrderHallHeader>{$class.name}</OrderHallHeader>
 			<Specs>
 				{recruitments.map(({ spec }) => (
