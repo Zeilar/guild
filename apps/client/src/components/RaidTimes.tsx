@@ -14,7 +14,7 @@ const raidTimeAnimation = keyframes`
         opacity: 1;
     }
     100% {
-        transform: var(--skewTransform) var(--scaleTransform);
+        transform: var(--skewTransform);
         opacity: 1;
     }
 `;
@@ -47,7 +47,6 @@ interface RaidTimeWrapperProps {
 const RaidTimeWrapper = styled.div<RaidTimeWrapperProps>(
 	({ $active }) => css`
 		--skew: 20deg;
-		--scaleTransform: ${$active ? "scale(1.1)" : "scale(1)"};
 		--skewTransform: skew(calc(-1 * var(--skew)));
 		text-transform: uppercase;
 		overflow: hidden;
@@ -57,7 +56,7 @@ const RaidTimeWrapper = styled.div<RaidTimeWrapperProps>(
 		box-shadow: 0 0 0 2px
 			var(--${$active ? "palette-primary" : "palette-border"});
 		z-index: ${$active ? 10 : 1};
-		transform: var(--skewTransform) var(--scaleTransform);
+		transform: var(--skewTransform);
 		user-select: none;
 		opacity: 0;
 		&.show {
